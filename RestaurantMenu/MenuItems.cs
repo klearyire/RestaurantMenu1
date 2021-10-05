@@ -8,17 +8,23 @@ namespace RestaurantMenu
 {
     public class MenuItems
     {
-        private string ItemName { get; set; }
-        private string Description { get; set; }
-        private double Price { get; set; }
-        private string Category { get; set; }
+        public string ItemName { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
+        public string Category { get; set; }
+        public bool NewItem { get; set; }
 
-        public MenuItems(string itemName, string description, double price, string category)
+        public MenuItems(string itemName, string description, double price, string category, bool NewItem)
         {
             ItemName = itemName;
             Description = description;
             Price = price;
             Category = category;
         }
+        public bool Equals(MenuItems item)
+        {
+            return this.ItemName == item.ItemName;
+        }
+
     }
 }

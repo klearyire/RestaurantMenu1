@@ -8,17 +8,50 @@ namespace RestaurantMenu
 {
     public class Menu
     {
+        
+       
+        public List<MenuItems> currentMenu { get; set; }
 
-        private bool NewItem { get; set; }
-        private List<MenuItems> MenuItems { get; set; }
+        private DateTime LastUpdated { get; }
 
-        private DateTime Date1 = new DateTime();
-
-        public Menu(bool newItem, List<MenuItems> menuItems, DateTime date1)
+        public Menu(bool newItem, List<MenuItems> menuItems)
         {
-            NewItem = newItem;
-            MenuItems = menuItems;
-            Date1 = date1;
+            menuItems = menuItems;
         }
+
+        private void AddItem(MenuItems newItem)
+        {
+            newItem.NewItem = true;
+            currentMenu.Add(newItem);
+           
+        }
+        private void printItem()
+        {
+            Console.WriteLine("What item would you like to view?");
+            int index = Int32.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{currentMenu[index].Price}: {currentMenu[index].ItemName}");
+            Console.WriteLine($"{currentMenu[index].Description}");
+
+        }
+        private void removeItem()
+        {
+            printMenu();
+            Console.WriteLine("What Item would you like to remove?");
+            int index = Int32.Parse(Console.ReadLine());
+
+            currentMenu.Remove(currentMenu[index]);
+
+        }
+        private void printMenu()
+        {
+            int index = 0;
+            foreach( MenuItems item in currentMenu)
+            {
+                Console.WriteLine($"{index}: {item.ItemName}");
+                index++;
+            }
+        }
+        
     }
 }
